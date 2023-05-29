@@ -2,13 +2,9 @@
 
 -- (Exercício 1) Conte quantos clientes da tabela sales.customers tem menos de 30 anos
 
-select 
-	(current_date-birth_date)/365 as idade,
-	count(*) as n_de_clientes
+select count(*)
 from sales.customers
-group by idade
-having (current_date-birth_date)/365 < 30
-order by idade
+where (current_date-birth_date)/365<30
 
 -- (Exercício 2) Informe a idade do cliente mais velho e mais novo da tabela sales.customers
 
@@ -21,8 +17,7 @@ from sales.customers
 
 select *
 from sales.customers
-where income = (select max(income)
-from sales.customers)
+where income = (select max(income) from sales.customers)
 
 -- (Exercício 4) Conte quantos veículos de cada marca tem registrado na tabela sales.products
 -- Ordene o resultado pelo nome da marca
